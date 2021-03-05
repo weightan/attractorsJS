@@ -1,4 +1,4 @@
-# attractorsJS
+# Peter de Jong Attractors
 ***
 <https://weightan.github.io/attractorsJS/>
 
