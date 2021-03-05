@@ -19,6 +19,11 @@ var displaceY = sizeY/2
 var backColor;
 var attrColor;
 
+var attrColorR;
+var attrColorG;
+var attrColorB;
+
+
 var pontSize = 1;
 var pointAlfa = 10;
 
@@ -38,7 +43,12 @@ var pointAlfa = 10;
 
 function setup() {
   backColor = 230;
-  attrColor = color('#710300');
+  attrColor = color(132, 3, 0);
+  attrColorR = red(attrColor);
+  attrColorG = green(attrColor);
+  attrColorB = blue(attrColor);
+  
+  
   displaceX = sizeX/2
   displaceY = sizeY/2
   
@@ -128,7 +138,7 @@ function displayAttr(){
   background(backColor);
   let oldx  = 1;
   let oldy  = 1;
-  stroke(attrColor, pointAlfa);
+  stroke(attrColorR, attrColorG, attrColorB, pointAlfa);
   strokeWeight(pontSize); 
   
   for (let i = 0; i < iterations ; i += 1) {
@@ -192,9 +202,11 @@ function changeValues_backColor() {
   backColor = color(this.value());
 }
 
-
 function changeValues_attrColor() {
   attrColor = color(this.value());
+  attrColorR = red(attrColor);
+  attrColorG = green(attrColor);
+  attrColorB = blue(attrColor);
 }
 
 
