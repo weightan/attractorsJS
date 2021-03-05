@@ -1,4 +1,4 @@
-# Peter de Jong Attractors
+# Peter de Jong Attractors Editor
 ***
 <https://weightan.github.io/attractorsJS/>
 
