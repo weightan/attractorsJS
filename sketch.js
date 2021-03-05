@@ -1,13 +1,27 @@
-var spX = 1;
-var spY = 1;
-let n = 10;
-let t = 2;
+var parameterA = 1.4;
+var parameterB = -2.5;
+var parameterC =  1.544;
+var parameterD = 1.740;
 
-var a = 1.4;
-var b = -2.5;
-var c =  1.544;
-var d = 1.740;
+var sizeX = 600;
+var sizeY = 600;
 
+var iterations = 10000;
+
+var multyplX = 120;
+var multyplY = 120;
+
+var displaceX = sizeX/2
+var displaceY = sizeY/2
+
+var backColor;
+var attrColor;
+
+var pontSize = 3;
+var pointAlfa = 30;
+
+
+let input, button, greeting;
 //0a = 1.4, b = -2.1, c = 2.4, d = -2.1
 //0a = 1.4, b = -1.899, c = 1.38,d = -1.4
 //0a = 1.41, b = -2.3, c = 2.3, d = -2.13
@@ -21,47 +35,90 @@ var d = 1.740;
 
 
 function setup() {
+  backColor = 230;
   
-  createCanvas(4725, 4725);
-  background(30);
-  //frameRate(24);
-  //createLoop({ open:true, duration: 5 , gif:true})
-  //image(pg, 0,0);
   
-  let oldx  = 1;
-  let oldy  = 1;
-  stroke(255, 35);
-  strokeWeight(1); 
+  createCanvas(sizeX, sizeX);
+  background(backColor);
+  displayAttr();
+ 
+  let inp_iterations = createInput(str(iterations));
+  inp_iterations.position(0, 0);
+  inp_iterations.input(changeValues_iterations);
   
-  for (let i = 0; i < 10000000; i += 1) {
-    
-     
+  let inp_parameterA = createInput(str(parameterA));
+  inp_parameterA.position(0, 25);
+  inp_parameterA.input(changeValues_parameterA);
   
-    let newx = bigX(oldx, oldy);
-    let newy = bigY(oldx, oldy);
-    
-    //if ((newx <  width/2)&&(newy <  height/2)&&(i > 10000)){
-      point(830*newx + width/2  , 830*newy + height/2) ;
-    //} 
-    
-    oldx  = newx;
-    oldy  = newy;
-    //spY += 0.1;
-  }
+  let inp_parameterB = createInput(str(parameterB));
+  inp_parameterB.position(0, 50);
+  inp_parameterB.input(changeValues_parameterB);
+  
+  let inp_parameterC = createInput(str(parameterC));
+  inp_parameterC.position(0, 75);
+  inp_parameterC.input(changeValues_parameterC);
+  
+  let inp_parameterD = createInput(str(parameterD));
+  inp_parameterD.position(0, 100);
+  inp_parameterD.input(changeValues_parameterD);
+  
+  
+  
+  button = createButton('display attractor');
+  button.position(20, 400);
+  button.mousePressed(displayAttr);
+
+  textAlign(CENTER);
+  textSize(50);
+  
 }
 
 function draw() {
-  //
-  
 }
-
 
 function bigX(xn, yn){
-  return sin(a * yn) - cos(b * xn);
+  return sin(parameterA * yn) - cos(parameterB * xn);
 }
 
-
 function bigY(xn, yn){
-  return  sin(c * xn) - cos(d * yn);
+  return  sin(parameterC * xn) - cos(parameterD * yn);
 }  
+
+function displayAttr(){
+  push();
+  background(backColor);
+  let oldx  = 1;
+  let oldy  = 1;
+  stroke(0, pointAlfa);
+  strokeWeight(pontSize); 
+  
+  for (let i = 0; i < iterations ; i += 1) {
+    let newx = bigX(oldx, oldy);
+    let newy = bigY(oldx, oldy);
+    point(multyplX*newx + displaceX, multyplY*newy + displaceY) ;
+    oldx  = newx;   
+    oldy  = newy;  
+  }
+  pop();
+}
+
+function changeValues_iterations() {
+  iterations = float(this.value());
+}
+
+function changeValues_parameterA() {
+  parameterA = float(this.value());
+}
+
+function changeValues_parameterB() {
+  parameterB = float(this.value());
+}
+
+function changeValues_parameterC() {
+  parameterC = float(this.value());
+}
+
+function changeValues_parameterD() {
+  parameterD = float(this.value());
+}
 
