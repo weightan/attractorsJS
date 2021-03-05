@@ -1,4 +1,5 @@
- 
+
+GitHub 
 
 var parameterA = 1.4;
 var parameterB = -2.5;
@@ -24,9 +25,10 @@ var attrColorG;
 var attrColorB;
 
 
-var pontSize = 1;
+var pointSize = 1;
 var pointAlfa = 40;
 
+let button;
 
 //let input, button, greeting;
 //0a = 1.4, b = -2.1, c = 2.4, d = -2.1
@@ -54,59 +56,118 @@ function setup() {
   
   createCanvas(sizeX, sizeX);
   background(backColor);
-  displayAttr();
- 
+  displayAttr(); 
+  
+  /////////
   let inp_backColor = createColorPicker('#E6E6E6');
-  inp_backColor.position(20, 275);
+  inp_backColor.position(20, 340);
   inp_backColor.input(changeValues_backColor);
   
+  let text_backColor = createElement('text', 'background');
+  text_backColor.position(25 + inp_backColor.width, 340);
+
   let inp_attrColor = createColorPicker('#710300');
-  inp_attrColor.position(20, 310);
+  inp_attrColor.position(20, 370);
   inp_attrColor.input(changeValues_attrColor);
+  
+  let text_attrColor = createElement('text', 'attractor');
+  text_attrColor.position(25 + inp_attrColor.width, 370);
+  //////
   
   let inp_iterations = createInput(str(iterations));
   inp_iterations.position(20, 0);
   inp_iterations.input(changeValues_iterations);
+  
+  let text_iterations = createElement('text', 'Iterations');
+  text_iterations.position(25 + inp_iterations.width, 5);
+
 
   let inp_parameterA = createInput(str(parameterA));
   inp_parameterA.position(20, 25);
   inp_parameterA.input(changeValues_parameterA);
   
+  let text_parameterA = createElement('text', 'Parameter a');
+  text_parameterA.position(25 + inp_parameterA.width, 25);
+  
   let inp_parameterB = createInput(str(parameterB));
   inp_parameterB.position(20, 50);
   inp_parameterB.input(changeValues_parameterB);
+  
+  let text_parameterB = createElement('text', 'Parameter b');
+  text_parameterB.position(25 + inp_parameterB.width, 50);
+  
   
   let inp_parameterC = createInput(str(parameterC));
   inp_parameterC.position(20, 75);
   inp_parameterC.input(changeValues_parameterC);
   
+  let text_parameterC = createElement('text', 'Parameter c');
+  text_parameterC.position(25 + inp_parameterC.width, 75);
+
+  
   let inp_parameterD = createInput(str(parameterD));
   inp_parameterD.position(20, 100);
   inp_parameterD.input(changeValues_parameterD);
+  
+  let text_parameterD = createElement('text', 'Parameter d');
+  text_parameterD.position(25 + inp_parameterD.width, 100);
 
-  let inp_pontSize = createInput(str(pontSize));
-  inp_pontSize.position(20, 125);
-  inp_pontSize.input(changeValues_pontSize);
+  let inp_pointSize = createInput(str(pointSize));
+  inp_pointSize.position(20, 125);
+  inp_pointSize.input(changeValues_pointSize);
+  
+  let text_pointSize = createElement('text', 'Point size');
+  text_pointSize.position(25 + inp_pointSize.width, 125);
   
   let inp_pointAlfa= createInput(str(pointAlfa));
   inp_pointAlfa.position(20, 150);
   inp_pointAlfa.input(changeValues_pointAlfa);
   
+  let text_pointAlfa = createElement('text', 'Points intensity');
+  text_pointAlfa.position(25 + inp_pointAlfa.width, 150);
+  
   let inp_sizeX = createInput(str(sizeX));
   inp_sizeX.position(20, 175);
   inp_sizeX.input(changeValues_sizeX);
+  
+  let text_sizeX = createElement('text', 'size X');
+  text_sizeX.position(25 + inp_sizeX.width, 175);
   
   let inp_sizeY= createInput(str(sizeY));
   inp_sizeY.position(20, 200);
   inp_sizeY.input(changeValues_sizeY);
   
+  let text_sizeY = createElement('text', 'size Y');
+  text_sizeY.position(25 + inp_sizeY.width, 200);
+  
   let inp_multyplX = createInput(str(multyplX));
   inp_multyplX.position(20, 225);
   inp_multyplX.input(changeValues_multyplX);
   
+  let text_multyplX = createElement('text', 'extention X');
+  text_multyplX.position(25 + inp_multyplX.width, 225);  
+  
   let inp_multyplY= createInput(str(multyplY));
   inp_multyplY.position(20, 250);
   inp_multyplY.input(changeValues_multyplY);
+  
+  let text_multyplY = createElement('text', 'extention Y');
+  text_multyplY.position(25 + inp_multyplY.width, 250);  
+  ///////
+  
+   let inp_displaceX = createInput(str(displaceX));
+  inp_displaceX.position(20, 275);
+  inp_displaceX.input(changeValues_displaceX);
+  
+  let text_displaceX = createElement('text', 'displace X');
+  text_displaceX.position(25 + inp_displaceX.width, 275);  
+  
+  let inp_displaceY= createInput(str(displaceY));
+  inp_displaceY.position(20, 300);
+  inp_displaceY.input(changeValues_displaceY);
+  
+  let text_displaceY = createElement('text', 'displace Y');
+  text_displaceY.position(25 + inp_displaceY.width, 300);  
   
   
   
@@ -114,6 +175,10 @@ function setup() {
   button = createButton('display attractor');
   button.position(20, 400);
   button.mousePressed(displayAttr);
+  
+  link = createA('https://github.com/weightan/attractorsJS', 'GitHub');
+  link.position(20, 430);
+
 
   //textAlign(CENTER);
   //textSize(50);
@@ -132,14 +197,14 @@ function bigY(xn, yn){
 }  
 
 function displayAttr(){
-  displaceX = sizeX/2
-  displaceY = sizeY/2
+  //let text_button = createElement('text', 'loading');
+  //text_button.position(200, 400);
   push();
   background(backColor);
   let oldx  = 1;
   let oldy  = 1;
   stroke(attrColorR, attrColorG, attrColorB, pointAlfa);
-  strokeWeight(pontSize); 
+  strokeWeight(pointSize); 
   
   for (let i = 0; i < iterations ; i += 1) {
     let newx = bigX(oldx, oldy);
@@ -149,10 +214,11 @@ function displayAttr(){
     oldy  = newy;  
   }
   pop();
+  //text_button.hide();
 }
 
 function changeValues_iterations() {
-  iterations = float(this.value());
+  iterations = int(this.value());
 }
 
 function changeValues_parameterA() {
@@ -171,31 +237,31 @@ function changeValues_parameterD() {
   parameterD = float(this.value());
 }
 
-function changeValues_pontSize() {
+function changeValues_pointSize() {
   pontSize = float(this.value());
 }
 
 function changeValues_pointAlfa() {
-  pointAlfa = float(this.value());
+  pointAlfa = int(this.value());
 }
 
 
 function changeValues_sizeX() {
-  sizeX = float(this.value());
+  sizeX = int(this.value());
   resizeCanvas(sizeX, sizeY);
 }
 
 function changeValues_sizeY() {
-  sizeY = float(this.value());
+  sizeY = int(this.value());
   resizeCanvas(sizeX, sizeY);
 }
 
 function changeValues_multyplX() {
-  multyplX= float(this.value());
+  multyplX= int(this.value());
 }
 
 function changeValues_multyplY() {
-  multyplY = float(this.value());
+  multyplY = int(this.value());
 }
 
 function changeValues_backColor() {
@@ -209,6 +275,14 @@ function changeValues_attrColor() {
   attrColorB = blue(attrColor);
 }
 
+
+function changeValues_displaceX() {
+  displaceX= int(this.value());
+}
+
+function changeValues_displaceY() {
+  displaceY = int(this.value());
+}
 
 
 
