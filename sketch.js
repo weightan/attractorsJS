@@ -8,7 +8,7 @@ var parameterD = 1.740;
 var sizeX = 1000;
 var sizeY = 1000;
 
-var iterations = 50000;
+var iterations = 100000;
 
 var multyplX = 180;
 var multyplY = 180;
@@ -25,7 +25,7 @@ var attrColorB;
 
 
 var pontSize = 1;
-var pointAlfa = 10;
+var pointAlfa = 40;
 
 
 //let input, button, greeting;
