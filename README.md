@@ -1,1 +1,3 @@
-# attractorsJS.github.io
+# attractorsJS
+
+https://weightan.github.io/attractorsJS/
