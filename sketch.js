@@ -5,12 +5,10 @@ var parameterB = -2.5;
 var parameterC =  1.544;
 var parameterD = 1.740;
 
-var str_parameterA;
-var str_parameterB;
-var str_parameterC;
-var str_parameterD;
+
 
 var inp_parameterA,  inp_parameterB, inp_parameterC, inp_parameterD;
+var text_parameterA, text_parameterB, text_parameterC, text_parameterD;
 
 
 var sizeX = 1000;
@@ -86,14 +84,14 @@ function setup() {
   inp_parameterA.position(20, 25);
   inp_parameterA.input(changeValues_parameterA);
   
-  let text_parameterA = createElement('text', 'Parameter a');
+  text_parameterA = createElement('text', 'Parameter a = ' + parameterA);
   text_parameterA.position(25 + inp_parameterA.width, 25);
   
   inp_parameterB = createInput(str_parameterB);
   inp_parameterB.position(20, 50);
   inp_parameterB.input(changeValues_parameterB);
   
-  let text_parameterB = createElement('text', 'Parameter b');
+  text_parameterB = createElement('text', 'Parameter b = ' + parameterB);
   text_parameterB.position(25 + inp_parameterB.width, 50);
   
   
@@ -101,7 +99,7 @@ function setup() {
   inp_parameterC.position(20, 75);
   inp_parameterC.input(changeValues_parameterC);
   
-  let text_parameterC = createElement('text', 'Parameter c');
+  text_parameterC = createElement('text', 'Parameter c = ' + parameterC);
   text_parameterC.position(25 + inp_parameterC.width, 75);
 
   
@@ -109,7 +107,7 @@ function setup() {
   inp_parameterD.position(20, 100);
   inp_parameterD.input(changeValues_parameterD);
   
-  let text_parameterD = createElement('text', 'Parameter d');
+  text_parameterD = createElement('text', 'Parameter d = ' + parameterD);
   text_parameterD.position(25 + inp_parameterD.width, 100);
 
   let inp_pointSize = createInput(str(pointSize));
@@ -242,6 +240,9 @@ function displayAttr(){
     oldy  = newy;  
   }
   pop();
+  
+ 
+  
   //text_button.hide();
 }
 
@@ -252,16 +253,11 @@ function displayAttr_withRandom () {
   parameterC = random(-5, 5);
   parameterD = random(-5, 5);
   
-  str_parameterA = str(parameterA);
-  str_parameterB = str(parameterB);
-  str_parameterC = str(parameterC);
-  str_parameterD = str(parameterD);
-  
-  inp_parameterA.attribute('value',  str_parameterA);
-  inp_parameterB.attribute('value',  str_parameterB);
-  inp_parameterC.attribute('value',  str_parameterC);
-  inp_parameterD.attribute('value',  str_parameterD);
-  //myDiv.attribute('align', 'center');
+  text_parameterA.html('a = ' + parameterA);
+  text_parameterB.html('b = ' + parameterB);
+  text_parameterC.html('c = ' +  parameterC);
+  text_parameterD.html('d = ' + parameterD);
+
   
   displayAttr();
 }
@@ -272,18 +268,22 @@ function changeValues_iterations() {
 
 function changeValues_parameterA() {
   parameterA = float(this.value());
+  text_parameterA.html('a = ' + parameterA);
 }
 
 function changeValues_parameterB() {
   parameterB = float(this.value());
+  text_parameterB.html('b = ' + parameterB);
 }
 
 function changeValues_parameterC() {
   parameterC = float(this.value());
+  text_parameterC.html('c = ' +  parameterC);
 }
 
 function changeValues_parameterD() {
   parameterD = float(this.value());
+  text_parameterD.html('d = ' + parameterD);
 }
 
 function changeValues_pointSize() {
