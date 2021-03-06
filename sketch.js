@@ -5,6 +5,14 @@ var parameterB = -2.5;
 var parameterC =  1.544;
 var parameterD = 1.740;
 
+var str_parameterA;
+var str_parameterB;
+var str_parameterC;
+var str_parameterD;
+
+var inp_parameterA,  inp_parameterB, inp_parameterC, inp_parameterD;
+
+
 var sizeX = 1000;
 var sizeY = 1000;
 
@@ -44,6 +52,11 @@ let button;
 
 
 function setup() {
+  str_parameterA = str(parameterA);
+  str_parameterB = str(parameterB);
+  str_parameterC =  str(parameterC);
+  str_parameterD = str(parameterD);
+  
   backColor = 230;
   attrColor = color(132, 3, 0);
   attrColorR = red(attrColor);
@@ -82,14 +95,14 @@ function setup() {
   text_iterations.position(25 + inp_iterations.width, 5);
 
 
-  let inp_parameterA = createInput(str(parameterA));
+  inp_parameterA = createInput(str_parameterA);
   inp_parameterA.position(20, 25);
   inp_parameterA.input(changeValues_parameterA);
   
   let text_parameterA = createElement('text', 'Parameter a');
   text_parameterA.position(25 + inp_parameterA.width, 25);
   
-  let inp_parameterB = createInput(str(parameterB));
+  inp_parameterB = createInput(str_parameterB);
   inp_parameterB.position(20, 50);
   inp_parameterB.input(changeValues_parameterB);
   
@@ -97,7 +110,7 @@ function setup() {
   text_parameterB.position(25 + inp_parameterB.width, 50);
   
   
-  let inp_parameterC = createInput(str(parameterC));
+  inp_parameterC = createInput(str_parameterC);
   inp_parameterC.position(20, 75);
   inp_parameterC.input(changeValues_parameterC);
   
@@ -105,7 +118,7 @@ function setup() {
   text_parameterC.position(25 + inp_parameterC.width, 75);
 
   
-  let inp_parameterD = createInput(str(parameterD));
+  inp_parameterD = createInput(str_parameterD);
   inp_parameterD.position(20, 100);
   inp_parameterD.input(changeValues_parameterD);
   
@@ -169,23 +182,24 @@ function setup() {
   let text_displaceY = createElement('text', 'displace Y. ≈ sizeY/2');
   text_displaceY.position(25 + inp_displaceY.width, 300);  
   
-  let checkbox_burn = createCheckbox('BURN color mode(increases render time)', false);
-  checkbox_burn.changed(changeValues_burn);
-  checkbox_burn.position(10, 450);
+
   
   
   button = createButton('display attractor');
   button.position(20, 400);
-  //button.style("color", "black");
-  //button.style("color", "black");
-  //background-color: #f1f1f1;
-  //color: black;
   button.mousePressed(displayAttr);
   
   link = createA('https://github.com/weightan/attractorsJS', 'GitHub');
   link.position(20, 430);
 
-
+  let checkbox_burn = createCheckbox('BURN color mode(increases render time)', false);
+  checkbox_burn.changed(changeValues_burn);
+  checkbox_burn.position(20, 450);
+  
+  button = createButton('display attractor with random parameters a,b,c,d');
+  button.position(20, 480);
+  button.mousePressed(displayAttr_withRandom);
+  
   //textAlign(CENTER);
   //textSize(50);
   
@@ -223,6 +237,27 @@ function displayAttr(){
   }
   pop();
   //text_button.hide();
+}
+
+function displayAttr_withRandom () {
+  
+  parameterA = random(-3, 3);
+  parameterB = random(-3, 3);
+  parameterC = random(-3, 3);
+  parameterD = random(-3, 3);
+  
+  str_parameterA = str(parameterA);
+  str_parameterB = str(parameterB);
+  str_parameterC = str(parameterC);
+  str_parameterD = str(parameterD);
+  
+  inp_parameterA.attribute('value',  str_parameterA);
+  inp_parameterB.attribute('value',  str_parameterB);
+  inp_parameterC.attribute('value',  str_parameterC);
+  inp_parameterD.attribute('value',  str_parameterD);
+  //myDiv.attribute('align', 'center');
+  
+  displayAttr();
 }
 
 function changeValues_iterations() {
