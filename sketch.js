@@ -23,6 +23,7 @@ var attrColorR;
 var attrColorG;
 var attrColorB;
 
+var burn = 0;
 
 var pointSize = 1;
 var pointAlfa = 40;
@@ -168,11 +169,17 @@ function setup() {
   let text_displaceY = createElement('text', 'displace Y. ≈ sizeY/2');
   text_displaceY.position(25 + inp_displaceY.width, 300);  
   
-  
+  let checkbox_burn = createCheckbox('BURN color mode(increases render time)', false);
+  checkbox_burn.changed(changeValues_burn);
+  checkbox_burn.position(10, 450);
   
   
   button = createButton('display attractor');
   button.position(20, 400);
+  //button.style("color", "black");
+  //button.style("color", "black");
+  //background-color: #f1f1f1;
+  //color: black;
   button.mousePressed(displayAttr);
   
   link = createA('https://github.com/weightan/attractorsJS', 'GitHub');
@@ -204,7 +211,9 @@ function displayAttr(){
   let oldy  = 1;
   stroke(attrColorR, attrColorG, attrColorB, pointAlfa);
   strokeWeight(pointSize); 
-  
+  if (burn){
+    blendMode(BURN);
+  }
   for (let i = 0; i < iterations ; i += 1) {
     let newx = bigX(oldx, oldy);
     let newy = bigY(oldx, oldy);
@@ -281,6 +290,10 @@ function changeValues_displaceX() {
 
 function changeValues_displaceY() {
   displaceY = int(this.value());
+}
+
+function changeValues_burn() {
+ burn  = this.checked();
 }
 
 
