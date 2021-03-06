@@ -55,6 +55,12 @@ function setup() {
   
   createCanvas(sizeX, sizeX);
   background(backColor);
+  
+  button = createButton('display attractor');
+  button.position(20, 400);
+  button.mousePressed(displayAttr);
+  
+  
   displayAttr(); 
   
   /////////
@@ -63,14 +69,14 @@ function setup() {
   inp_backColor.input(changeValues_backColor);
   
   let text_backColor = createElement('text', 'background');
-  text_backColor.position(25 + inp_backColor.width, 340);
+  text_backColor.position(60 + inp_backColor.width, 340);
 
   let inp_attrColor = createColorPicker('#710300');
   inp_attrColor.position(20, 370);
   inp_attrColor.input(changeValues_attrColor);
   
   let text_attrColor = createElement('text', 'attractor');
-  text_attrColor.position(25 + inp_attrColor.width, 370);
+  text_attrColor.position(60 + inp_attrColor.width, 370);
   //////
   
   let inp_iterations = createInput(str(iterations));
@@ -170,11 +176,7 @@ function setup() {
   
   
   
-  
-  button = createButton('display attractor');
-  button.position(20, 400);
-  button.mousePressed(displayAttr);
-  
+
   link = createA('https://github.com/weightan/attractorsJS', 'GitHub');
   link.position(20, 430);
 
@@ -196,8 +198,8 @@ function bigY(xn, yn){
 }  
 
 function displayAttr(){
-  //let text_button = createElement('text', 'loading');
-  //text_button.position(200, 400);
+  //displayLoading(0);
+  
   push();
   background(backColor);
   let oldx  = 1;
@@ -213,7 +215,16 @@ function displayAttr(){
     oldy  = newy;  
   }
   pop();
+  //displayLoading(1);
   //text_button.hide();
+}
+
+function displayLoading(foo) {
+  let text_button = createElement('text', 'loading');
+  text_button.position(150, 400);
+  if (foo) {
+    text_button.hide();
+  }
 }
 
 function changeValues_iterations() {
@@ -237,7 +248,7 @@ function changeValues_parameterD() {
 }
 
 function changeValues_pointSize() {
-  pontSize = float(this.value());
+  pointSize = float(this.value());
 }
 
 function changeValues_pointAlfa() {
