@@ -55,12 +55,6 @@ function setup() {
   
   createCanvas(sizeX, sizeX);
   background(backColor);
-  
-  button = createButton('display attractor');
-  button.position(20, 400);
-  button.mousePressed(displayAttr);
-  
-  
   displayAttr(); 
   
   /////////
@@ -83,7 +77,7 @@ function setup() {
   inp_iterations.position(20, 0);
   inp_iterations.input(changeValues_iterations);
   
-  let text_iterations = createElement('text', 'Iterations');
+  let text_iterations = createElement('text', 'Iterations, max 1e+7');
   text_iterations.position(25 + inp_iterations.width, 5);
 
 
@@ -164,19 +158,23 @@ function setup() {
   inp_displaceX.position(20, 275);
   inp_displaceX.input(changeValues_displaceX);
   
-  let text_displaceX = createElement('text', 'displace X');
+  let text_displaceX = createElement('text', 'displace X, recommended sizeX/2');
   text_displaceX.position(25 + inp_displaceX.width, 275);  
   
   let inp_displaceY= createInput(str(displaceY));
   inp_displaceY.position(20, 300);
   inp_displaceY.input(changeValues_displaceY);
   
-  let text_displaceY = createElement('text', 'displace Y');
+  let text_displaceY = createElement('text', 'displace Y. recommended sizeY/2');
   text_displaceY.position(25 + inp_displaceY.width, 300);  
   
   
   
-
+  
+  button = createButton('display attractor');
+  button.position(20, 400);
+  button.mousePressed(displayAttr);
+  
   link = createA('https://github.com/weightan/attractorsJS', 'GitHub');
   link.position(20, 430);
 
@@ -198,8 +196,8 @@ function bigY(xn, yn){
 }  
 
 function displayAttr(){
-  //displayLoading(0);
-  
+  //let text_button = createElement('text', 'loading');
+  //text_button.position(200, 400);
   push();
   background(backColor);
   let oldx  = 1;
@@ -215,16 +213,7 @@ function displayAttr(){
     oldy  = newy;  
   }
   pop();
-  //displayLoading(1);
   //text_button.hide();
-}
-
-function displayLoading(foo) {
-  let text_button = createElement('text', 'loading');
-  text_button.position(150, 400);
-  if (foo) {
-    text_button.hide();
-  }
 }
 
 function changeValues_iterations() {
