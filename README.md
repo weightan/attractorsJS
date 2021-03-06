@@ -2,8 +2,9 @@
 ***
 <https://weightan.github.io/attractorsJS/>
 
-xn+1 = sin(a yn) - cos(b xn)
-yn+1 = sin(c xn) - cos(d yn)
+X<sub>n+1</sub> = sin(a * Y<sub>n</sub>) - cos(b * X<sub>n</sub>)
+
+X<sub>n+1</sub> = sin(c * X<sub>n</sub>) - cos(d * Y<sub>n</sub>)
 
 Source:
 
