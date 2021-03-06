@@ -36,7 +36,7 @@ var burn = 0;
 var pointSize = 1;
 var pointAlfa = 40;
 
-let button;
+let button1, button2;
 
 //let input, button, greeting;
 //0a = 1.4, b = -2.1, c = 2.4, d = -2.1
@@ -71,20 +71,7 @@ function setup() {
   background(backColor);
   displayAttr(); 
   
-  /////////
-  let inp_backColor = createColorPicker('#E6E6E6');
-  inp_backColor.position(20, 340);
-  inp_backColor.input(changeValues_backColor);
-  
-  let text_backColor = createElement('text', 'background');
-  text_backColor.position(60 + inp_backColor.width, 340);
 
-  let inp_attrColor = createColorPicker('#710300');
-  inp_attrColor.position(20, 370);
-  inp_attrColor.input(changeValues_attrColor);
-  
-  let text_attrColor = createElement('text', 'attractor');
-  text_attrColor.position(60 + inp_attrColor.width, 370);
   //////
   
   let inp_iterations = createInput(str(iterations));
@@ -182,23 +169,42 @@ function setup() {
   let text_displaceY = createElement('text', 'displace Y. ≈ sizeY/2');
   text_displaceY.position(25 + inp_displaceY.width, 300);  
   
+  ///////////////////////////////////
+  let inp_backColor = createColorPicker('#E6E6E6');
+  inp_backColor.position(20, 340);
+  inp_backColor.input(changeValues_backColor);
+  
+  let text_backColor = createElement('text', 'background');
+  text_backColor.position(60 + inp_backColor.width, 340);
+
+  let inp_attrColor = createColorPicker('#710300');
+  inp_attrColor.position(20, 370);
+  inp_attrColor.input(changeValues_attrColor);
+  
+  let text_attrColor = createElement('text', 'attractor');
+  text_attrColor.position(60 + inp_attrColor.width, 370);
+  
+  ///////////////////////////////////
+  
+  button1 = createButton('display attractor');
+  button1.position(20, 400);
+  button1.mousePressed(displayAttr);
+  button1.class('button');
+  
+  button2 = createButton('display attractor with random parameters a,b,c,d');
+  button2.position(20, 425);
+  button2.class('button');
+  button2.mousePressed(displayAttr_withRandom);
 
   
+  ///////////////////////////////////
   
-  button = createButton('display attractor');
-  button.position(20, 400);
-  button.mousePressed(displayAttr);
-  
-  link = createA('https://github.com/weightan/attractorsJS', 'GitHub');
-  link.position(20, 430);
-
   let checkbox_burn = createCheckbox('BURN color mode(increases render time)', false);
   checkbox_burn.changed(changeValues_burn);
   checkbox_burn.position(20, 450);
   
-  button = createButton('display attractor with random parameters a,b,c,d');
-  button.position(20, 480);
-  button.mousePressed(displayAttr_withRandom);
+  link = createA('https://github.com/weightan/attractorsJS', 'GitHub');
+  link.position(20, 480);
   
   //textAlign(CENTER);
   //textSize(50);
