@@ -143,14 +143,14 @@ function setup() {
   inp_multyplX.position(20, 225);
   inp_multyplX.input(changeValues_multyplX);
   
-  let text_multyplX = createElement('text', 'extention X');
+  let text_multyplX = createElement('text', 'extention X, ≈ sizeX/5');
   text_multyplX.position(25 + inp_multyplX.width, 225);  
   
   let inp_multyplY= createInput(str(multyplY));
   inp_multyplY.position(20, 250);
   inp_multyplY.input(changeValues_multyplY);
   
-  let text_multyplY = createElement('text', 'extention Y');
+  let text_multyplY = createElement('text', 'extention Y, ≈ sizeY/5');
   text_multyplY.position(25 + inp_multyplY.width, 250);  
   ///////
   
@@ -158,14 +158,14 @@ function setup() {
   inp_displaceX.position(20, 275);
   inp_displaceX.input(changeValues_displaceX);
   
-  let text_displaceX = createElement('text', 'displace X, recommended sizeX/2');
+  let text_displaceX = createElement('text', 'displace X, ≈ sizeX/2');
   text_displaceX.position(25 + inp_displaceX.width, 275);  
   
   let inp_displaceY= createInput(str(displaceY));
   inp_displaceY.position(20, 300);
   inp_displaceY.input(changeValues_displaceY);
   
-  let text_displaceY = createElement('text', 'displace Y. recommended sizeY/2');
+  let text_displaceY = createElement('text', 'displace Y. ≈ sizeY/2');
   text_displaceY.position(25 + inp_displaceY.width, 300);  
   
   
