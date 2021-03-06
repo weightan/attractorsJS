@@ -247,10 +247,10 @@ function displayAttr(){
 
 function displayAttr_withRandom () {
   
-  parameterA = random(-3, 3);
-  parameterB = random(-3, 3);
-  parameterC = random(-3, 3);
-  parameterD = random(-3, 3);
+  parameterA = random(-5, 5);
+  parameterB = random(-5, 5);
+  parameterC = random(-5, 5);
+  parameterD = random(-5, 5);
   
   str_parameterA = str(parameterA);
   str_parameterB = str(parameterB);
