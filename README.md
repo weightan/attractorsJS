@@ -12,31 +12,6 @@ Y<sub>n+1</sub> = sin(c * X<sub>n</sub>) - cos(d * Y<sub>n</sub>)
 
 ### Images made with 10,000,000 iterations:
 
-10 000 000 Iterations
-
-1.4 Parameter a
-
--2.5 Parameter b
-
-1.544 Parameter c
-
-3.74 Parameter d
-
-1 Point size
-
-10 Points intensity
-
-2160 size X
-
-2160 size Y
-
-320 extention X
-
-320 extention Y
-
-1080 displace X
-
-1320 displace Y
 
 ![exemple](https://i.imgur.com/0e5r5Jm.png)
 ![exemple](https://i.imgur.com/5pWiwzP.png)
