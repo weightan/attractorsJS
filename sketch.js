@@ -329,7 +329,7 @@ function displayAttrGumowski_Mira(){
       let newy = bigY_Gumowski_Mira(newx, oldx);
     
       if ((abs(multyplX*newx) <  width/2)&&(abs(multyplY*newy) <  height/2)){
-        point(multyplX*newx + width/2  , multyplY*newy + height/2);
+        point(multyplX*newx + displaceX  , multyplY*newy + displaceY);
       } 
     
     oldx  = newx;
