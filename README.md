@@ -1,8 +1,16 @@
-# [Peter de Jong Attractors Editor](https://weightan.github.io/attractorsJS/)
+# [Online Attractors Editor](https://weightan.github.io/attractorsJS/)
 ***
+Peter de Jong Attractor:
+
 X<sub>n+1</sub> = sin(a * Y<sub>n</sub>) - cos(b * X<sub>n</sub>)
 
 Y<sub>n+1</sub> = sin(c * X<sub>n</sub>) - cos(d * Y<sub>n</sub>)
+
+Clifford Attractor:
+
+X<sub>n+1</sub> = sin(a * Y<sub>n</sub>) + c * cos(a * X<sub>n</sub>)
+
+Y<sub>n+1</sub> = sin(c * X<sub>n</sub>) + d * cos(b * Y<sub>n</sub>)
 
 ### Source:
 
@@ -10,7 +18,7 @@ Y<sub>n+1</sub> = sin(c * X<sub>n</sub>) - cos(d * Y<sub>n</sub>)
 
 <http://paulbourke.net/fractals/peterdejong/>
 
-### Images made with 10,000,000 iterations:
+### Images of Peter de Jong Attractor made with 10,000,000 iterations:
 
 
 ![exemple](https://i.imgur.com/0e5r5Jm.png)
