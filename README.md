@@ -18,6 +18,8 @@ Y<sub>n+1</sub> = sin(c * X<sub>n</sub>) + d * cos(b * Y<sub>n</sub>)
 
 <http://paulbourke.net/fractals/peterdejong/>
 
+<http://paulbourke.net/fractals/clifford/>
+
 ### Images of Peter de Jong Attractor made with 10,000,000 iterations:
 
 
