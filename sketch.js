@@ -209,7 +209,7 @@ function setup() {
   radio = createRadio();
   radio.position(20, 500);
   radio.option(' Peter de Jong attractor');
-  radio.option(' Clifford attractor, recommended scale size/15');
+  radio.option(' Clifford attractor, recommended scale size/7');
   //radio.attribute('value', ' Peter de Jong attractor')
   radio.style('width', '90px');
   //radio.value(' Peter de Jong attractor');
