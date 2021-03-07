@@ -52,6 +52,7 @@ var radio;
 
 
 function setup() {
+  
   str_parameterA = str(parameterA);
   str_parameterB = str(parameterB);
   str_parameterC =  str(parameterC);
@@ -72,7 +73,7 @@ function setup() {
   displayAttrJong(); 
   
 
-  //////
+  ///////////////////////////////////////////////////////////////////////////////////
   
   let inp_iterations = createInput(str(iterations));
   inp_iterations.position(20, 0);
@@ -210,6 +211,7 @@ function setup() {
   radio.position(20, 500);
   radio.option(' Peter de Jong attractor');
   radio.option(' Clifford attractor, recommended scale size/7');
+  radio.option(' Gumowski-Mira attractor, uses only a,b; recommended scale size/10');
   //radio.attribute('value', ' Peter de Jong attractor')
   radio.style('width', '90px');
   //radio.value(' Peter de Jong attractor');
@@ -222,6 +224,8 @@ function setup() {
 function draw() {
 }
 
+///////////////////////////////////////////////////////////////////////////////////////
+
 function bigX_Jong(xn, yn){
   return sin(parameterA * yn) - cos(parameterB * xn);
 }
@@ -230,6 +234,7 @@ function bigY_Jong(xn, yn){
   return  sin(parameterC * xn) - cos(parameterD * yn);
 }  
 
+
 function bigX_Clifford(xn, yn){
   return sin(parameterA * yn) + parameterC * cos(parameterA * xn);
 }
@@ -237,6 +242,17 @@ function bigX_Clifford(xn, yn){
 function bigY_Clifford(xn, yn){
   return sin(parameterB * xn) + parameterD * cos(parameterB * yn);
 } 
+
+
+function bigX_Gumowski_Mira (xn, yn){
+  return parameterB*yn + parameterA*xn + ((2*(1-parameterA)*xn**2)/(1+ xn**2))
+}
+
+function bigY_Gumowski_Mira (xnp, xn){
+  return  parameterA*xnp + ((2*(1-parameterA)*xnp**2)/(1+ xnp**2)) - xn
+}  
+
+/////////////////////////////////////////////////////////////////////////////////////
 
 function displayAttrJong(){
   push();
@@ -278,29 +294,86 @@ function displayAttrClifford(){
   pop();
 }
 
-function displayAttr_withRandom () {
+function displayAttrGumowski_Mira(){
   
-  parameterA = random(-5, 5);
-  parameterB = random(-5, 5);
-  parameterC = random(-5, 5);
-  parameterD = random(-5, 5);
+  if  ((parameterA < -0.999)||(parameterA > 0.99)){
+    parameterA = map(parameterA, -5, 5, -0.999, 0.99, true);
+  }
+  
+  if  ((parameterB < 0.8)||(parameterB > 0.99)){
+    parameterB = map(parameterA, -5, 5, 0.8, 0.99, true);
+  }
+  
+  parameterC = NaN;
+  parameterD = NaN;
+  
+  push();
+  background(backColor);
+  
+  if (burn){
+    blendMode(BURN);
+  }
+  stroke(attrColorR, attrColorG, attrColorB, pointAlfa);
+  strokeWeight(pointSize); 
+  
+  for (let i = 0; i < iterations/1000; i += 1) {//nosafe
+    
+    let oldx  = random(1, 100);
+    let oldy  = random(1, 100);  
+    
+
+  
+    for (let j = 0; j < 1000; j += 1){
+
+      let newx = bigX_Gumowski_Mira(oldx, oldy);
+      let newy = bigY_Gumowski_Mira(newx, oldx);
+    
+      if ((abs(multyplX*newx) <  width/2)&&(abs(multyplY*newy) <  height/2)){
+        point(multyplX*newx + width/2  , multyplY*newy + height/2);
+      } 
+    
+    oldx  = newx;
+    oldy  = newy;
+    }
+  }
+  pop();
+  
+  
   
   text_parameterA.html('a = ' + parameterA);
   text_parameterB.html('b = ' + parameterB);
   text_parameterC.html('c = ' +  parameterC);
   text_parameterD.html('d = ' + parameterD);
+}
 
+
+function displayAttr_withRandom () {
+  
+  parameterA = random(-5, 5);
+  parameterB = random(-5, 5);
+  
+  parameterC = random(-5, 5);
+  parameterD = random(-5, 5);
+  
   displayAttr_switch();
+  
+  text_parameterA.html('a = ' + parameterA);
+  text_parameterB.html('b = ' + parameterB);
+  text_parameterC.html('c = ' +  parameterC);
+  text_parameterD.html('d = ' + parameterD);
 }
 
 function displayAttr_switch(){
   if (radio.value() == ' Clifford attractor, recommended scale size/7'){
     displayAttrClifford()
-  }else{
-    //print('10');
+  }else if (radio.value() == ' Gumowski-Mira attractor, uses only a,b; recommended scale size/10'){
+    displayAttrGumowski_Mira();
+  } else {
     displayAttrJong();
   }
 }
+
+//////////////////////////////////////////////////////////////////////////////////////
 
 function changeValues_iterations() {
   iterations = int(this.value());
