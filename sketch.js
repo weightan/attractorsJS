@@ -36,6 +36,8 @@ var pointAlfa = 40;
 
 let button1, button2;
 
+var radio;
+
 //let input, button, greeting;
 //0a = 1.4, b = -2.1, c = 2.4, d = -2.1
 //0a = 1.4, b = -1.899, c = 1.38,d = -1.4
@@ -67,7 +69,7 @@ function setup() {
   
   createCanvas(sizeX, sizeX);
   background(backColor);
-  displayAttr(); 
+  displayAttrJong(); 
   
 
   //////
@@ -186,7 +188,7 @@ function setup() {
   
   button1 = createButton('display attractor');
   button1.position(20, 400);
-  button1.mousePressed(displayAttr);
+  button1.mousePressed(displayAttr_switch);
   button1.class('button');
   
   button2 = createButton('display attractor with random parameters a,b,c,d');
@@ -204,6 +206,14 @@ function setup() {
   link = createA('https://github.com/weightan/attractorsJS', 'GitHub');
   link.position(20, 480);
   
+  radio = createRadio();
+  radio.position(20, 500);
+  radio.option(' Peter de Jong attractor');
+  radio.option(' Clifford attractor, recommended scale size/15');
+  //radio.attribute('value', ' Peter de Jong attractor')
+  radio.style('width', '90px');
+  //radio.value(' Peter de Jong attractor');
+  
   //textAlign(CENTER);
   //textSize(50);
   
@@ -212,17 +222,23 @@ function setup() {
 function draw() {
 }
 
-function bigX(xn, yn){
+function bigX_Jong(xn, yn){
   return sin(parameterA * yn) - cos(parameterB * xn);
 }
 
-function bigY(xn, yn){
+function bigY_Jong(xn, yn){
   return  sin(parameterC * xn) - cos(parameterD * yn);
 }  
 
-function displayAttr(){
-  //let text_button = createElement('text', 'loading');
-  //text_button.position(200, 400);
+function bigX_Clifford(xn, yn){
+  return sin(parameterA * yn) + parameterC * cos(parameterA * xn);
+}
+
+function bigY_Clifford(xn, yn){
+  return sin(parameterB * xn) + parameterD * cos(parameterB * yn);
+} 
+
+function displayAttrJong(){
   push();
   background(backColor);
   let oldx  = 1;
@@ -233,17 +249,33 @@ function displayAttr(){
     blendMode(BURN);
   }
   for (let i = 0; i < iterations ; i += 1) {
-    let newx = bigX(oldx, oldy);
-    let newy = bigY(oldx, oldy);
+    let newx = bigX_Jong(oldx, oldy);
+    let newy = bigY_Jong(oldx, oldy);
     point(multyplX*newx + displaceX, multyplY*newy + displaceY) ;
     oldx  = newx;   
     oldy  = newy;  
   }
   pop();
-  
- 
-  
-  //text_button.hide();
+}
+
+function displayAttrClifford(){
+  push();
+  background(backColor);
+  let oldx  = 1;
+  let oldy  = 1;
+  stroke(attrColorR, attrColorG, attrColorB, pointAlfa);
+  strokeWeight(pointSize); 
+  if (burn){
+    blendMode(BURN);
+  }
+  for (let i = 0; i < iterations ; i += 1) {
+    let newx = bigX_Clifford(oldx, oldy);
+    let newy = bigY_Clifford(oldx, oldy);
+    point(multyplX*newx + displaceX, multyplY*newy + displaceY) ;
+    oldx  = newx;   
+    oldy  = newy;  
+  }
+  pop();
 }
 
 function displayAttr_withRandom () {
@@ -258,8 +290,16 @@ function displayAttr_withRandom () {
   text_parameterC.html('c = ' +  parameterC);
   text_parameterD.html('d = ' + parameterD);
 
-  
-  displayAttr();
+  displayAttr_switch();
+}
+
+function displayAttr_switch(){
+  if (radio.value() == ' Clifford attractor, recommended scale size/15'){
+    displayAttrClifford()
+  }else{
+    //print('10');
+    displayAttrJong();
+  }
 }
 
 function changeValues_iterations() {
