@@ -294,7 +294,7 @@ function displayAttr_withRandom () {
 }
 
 function displayAttr_switch(){
-  if (radio.value() == ' Clifford attractor, recommended scale size/15'){
+  if (radio.value() == ' Clifford attractor, recommended scale size/7'){
     displayAttrClifford()
   }else{
     //print('10');
