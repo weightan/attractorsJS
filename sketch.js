@@ -296,12 +296,12 @@ function displayAttrClifford(){
 
 function displayAttrGumowski_Mira(){
   
-  if  ((parameterA < -0.999)||(parameterA > 0.99)){
-    parameterA = map(parameterA, -5, 5, -0.999, 0.99, true);
+  if  ((parameterA < -0.999)||(parameterA > 1)){
+    parameterA = map(parameterA, -5, 5, -0.999, 1, true);
   }
   
-  if  ((parameterB < 0.8)||(parameterB > 0.99)){
-    parameterB = map(parameterA, -5, 5, 0.8, 0.99, true);
+  if  ((parameterB < 0.8)||(parameterB > 1)){
+    parameterB = map(parameterA, -5, 5, 0.8, 1, true);
   }
   
   parameterC = NaN;
