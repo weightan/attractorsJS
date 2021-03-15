@@ -12,6 +12,12 @@ X<sub>n+1</sub> = sin(a * Y<sub>n</sub>) + c * cos(a * X<sub>n</sub>)
 
 Y<sub>n+1</sub> = sin(c * X<sub>n</sub>) + d * cos(b * Y<sub>n</sub>)
 
+u/clockywork attractor
+
+x[n] = (sin(a*y[n-1]))^2 + c*(cos(a*x[n-1]))^2
+
+y[n] = (sin(b*x[n-1]))^2 + d*cos(b*y[n-1])*cos(a*x[n-1])
+
 ### Source:
 
 [Original published source](http://paulbourke.net/fractals/peterdejong/peterdejong.pdf) in Computer Recreations, Scientific American, July 1987
@@ -19,6 +25,8 @@ Y<sub>n+1</sub> = sin(c * X<sub>n</sub>) + d * cos(b * Y<sub>n</sub>)
 <http://paulbourke.net/fractals/peterdejong/>
 
 <http://paulbourke.net/fractals/clifford/>
+
+https://www.reddit.com/user/clockywork/
 
 ### Images of Peter de Jong Attractor made with 10,000,000 iterations:
 
