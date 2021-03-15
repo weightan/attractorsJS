@@ -212,6 +212,7 @@ function setup() {
   radio.option(' Peter de Jong attractor');
   radio.option(' Clifford attractor, recommended scale size/7');
   radio.option(' Gumowski-Mira attractor, uses only a,b; recommended scale size/10');
+  radio.option(' Clifford attractor u/clockywork modification');
   //radio.attribute('value', ' Peter de Jong attractor')
   radio.style('width', '90px');
   //radio.value(' Peter de Jong attractor');
@@ -251,6 +252,15 @@ function bigX_Gumowski_Mira (xn, yn){
 function bigY_Gumowski_Mira (xnp, xn){
   return  parameterA*xnp + ((2*(1-parameterA)*xnp**2)/(1+ xnp**2)) - xn
 }  
+
+function bigX_clockywork(xn, yn){
+  return (sin(parameterA*yn))**2 + parameterC*((cos(parameterA*xn))**2)
+}
+
+function bigY_clockywork(xn, yn){
+  return  (sin(parameterB*xn))**2 + parameterD*cos(parameterB*yn)*cos(parameterA*xn)
+} 
+
 
 /////////////////////////////////////////////////////////////////////////////////////
 
@@ -293,6 +303,28 @@ function displayAttrClifford(){
   }
   pop();
 }
+
+
+function displayClockywork(){
+  push();
+  background(backColor);
+  let oldx  = random(-100, 100);
+  let oldy  = random(-100, 100);
+  stroke(attrColorR, attrColorG, attrColorB, pointAlfa);
+  strokeWeight(pointSize); 
+  if (burn){
+    blendMode(BURN);
+  }
+  for (let i = 0; i < iterations ; i += 1) {
+    let newx = bigX_clockywork(oldx, oldy);
+    let newy = bigY_clockywork(oldx, oldy);
+    point(multyplX*newx + displaceX, multyplY*newy + displaceY) ;
+    oldx  = newx;   
+    oldy  = newy;  
+  }
+  pop();
+}
+
 
 function displayAttrGumowski_Mira(){
   
@@ -366,9 +398,11 @@ function displayAttr_withRandom () {
 function displayAttr_switch(){
   if (radio.value() == ' Clifford attractor, recommended scale size/7'){
     displayAttrClifford()
-  }else if (radio.value() == ' Gumowski-Mira attractor, uses only a,b; recommended scale size/10'){
+  }else if (radio.value() == ' Gumowski-Mira attractor, uses only a,b; recommended scale size/10'){ 
     displayAttrGumowski_Mira();
-  } else {
+  }else if (radio.value() == ' Clifford attractor u/clockywork modification'){
+    displayClockywork();
+  }else {
     displayAttrJong();
   }
 }
