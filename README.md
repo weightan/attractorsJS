@@ -14,9 +14,9 @@ Y<sub>n+1</sub> = sin(c * X<sub>n</sub>) + d * cos(b * Y<sub>n</sub>)
 
 u/clockywork attractor
 
-x[n] = (sin(a*y[n-1]))^2 + c*(cos(a*x[n-1]))^2
+x[n] = (sin(a * y[n-1]))^2 + c * (cos(a * x[n-1]))^2
 
-y[n] = (sin(b*x[n-1]))^2 + d*cos(b*y[n-1])*cos(a*x[n-1])
+y[n] = (sin(b * x[n-1]))^2 + d * cos(b * y[n-1]) * cos(a * x[n-1])
 
 ### Source:
 
