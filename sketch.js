@@ -263,13 +263,13 @@ function bigY_clockywork(xn, yn){
 } 
 ///////////////////////////////////////////////////////////////
 function bigX_Ikeda (xn, yn){
-  let t = parameterC - (parameterD/(xn**2 + yn**2 + 1))
-  return parameterA + parameterB*(xn*cos(t) - yn*sin(t))
+  let t1 = parameterC - (parameterD/(xn**2 + yn**2 + 1))
+  return parameterA + parameterB*(xn*cos(t1) - yn*sin(t1))
 }
 
 function bigY_Ikeda (xn, yn){
-  let t = parameterC - (parameterD/(xn**2 + yn**2 + 1))
-  return  parameterB*(xn*sin(t) - yn*cos(t))
+  let t2 = parameterC - (parameterD/(xn**2 + yn**2 + 1))
+  return  parameterB*(xn*sin(t2) - yn*cos(t2))
 } 
 
 
@@ -393,7 +393,7 @@ function displayAttrGumowski_Mira(){
 
 
 function displayIkedaMap(){
-  if  ((parameterD < 5)||(parameterD > -5)){
+  if  ((parameterD < 5)&&(parameterD > -5)){
     parameterD = map(parameterD, -5, 5, 5, 100, true);
   }
   
