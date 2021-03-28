@@ -213,6 +213,7 @@ function setup() {
   radio.option(' Clifford attractor, recommended scale size/7');
   radio.option(' Gumowski-Mira attractor, uses only a,b; recommended scale size/10');
   radio.option(' Clifford attractor u/clockywork modification');
+  radio.option(' Ikeda Map ');
   //radio.attribute('value', ' Peter de Jong attractor')
   radio.style('width', '90px');
   //radio.value(' Peter de Jong attractor');
@@ -235,7 +236,7 @@ function bigY_Jong(xn, yn){
   return  sin(parameterC * xn) - cos(parameterD * yn);
 }  
 
-
+///////////////////////////////////////////////////////////////
 function bigX_Clifford(xn, yn){
   return sin(parameterA * yn) + parameterC * cos(parameterA * xn);
 }
@@ -244,7 +245,7 @@ function bigY_Clifford(xn, yn){
   return sin(parameterB * xn) + parameterD * cos(parameterB * yn);
 } 
 
-
+///////////////////////////////////////////////////////////////
 function bigX_Gumowski_Mira (xn, yn){
   return parameterB*yn + parameterA*xn + ((2*(1-parameterA)*xn**2)/(1+ xn**2))
 }
@@ -252,7 +253,7 @@ function bigX_Gumowski_Mira (xn, yn){
 function bigY_Gumowski_Mira (xnp, xn){
   return  parameterA*xnp + ((2*(1-parameterA)*xnp**2)/(1+ xnp**2)) - xn
 }  
-
+///////////////////////////////////////////////////////////////
 function bigX_clockywork(xn, yn){
   return (sin(parameterA*yn))**2 + parameterC*((cos(parameterA*xn))**2)
 }
@@ -260,6 +261,17 @@ function bigX_clockywork(xn, yn){
 function bigY_clockywork(xn, yn){
   return  (sin(parameterB*xn))**2 + parameterD*cos(parameterB*yn)*cos(parameterA*xn)
 } 
+///////////////////////////////////////////////////////////////
+function bigX_Ikeda (xn, yn){
+  let t = parameterC - (parameterD/(xn**2 + yn**2 + 1))
+  return parameterA + parameterB*(xn*cos(t) - yn*sin(t))
+}
+
+function bigY_Ikeda (xn, yn){
+  let t = parameterC - (parameterD/(xn**2 + yn**2 + 1))
+  return  parameterB*(xn*sin(t) - yn*cos(t))
+} 
+
 
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -283,6 +295,7 @@ function displayAttrJong(){
   }
   pop();
 }
+
 
 function displayAttrClifford(){
   push();
@@ -333,7 +346,7 @@ function displayAttrGumowski_Mira(){
   }
   
   if  ((parameterB < 0.8)||(parameterB > 1)){
-    parameterB = map(parameterA, -5, 5, 0.8, 1, true);
+    parameterB = map(parameterB, -5, 5, 0.8, 1, true);
   }
   
   parameterC = NaN;
@@ -379,6 +392,33 @@ function displayAttrGumowski_Mira(){
 }
 
 
+function displayIkedaMap(){
+  if  ((parameterD < 5)||(parameterD > -5)){
+    parameterD = map(parameterD, -5, 5, 5, 100, true);
+  }
+  
+  push();
+  background(backColor);
+  let oldx  = 0;
+  let oldy  = 0;
+  stroke(attrColorR, attrColorG, attrColorB, pointAlfa);
+  strokeWeight(pointSize); 
+  if (burn){
+    blendMode(BURN);
+  }
+  for (let i = 0; i < iterations ; i += 1) {
+    let newx = bigX_Ikeda(oldx, oldy);
+    let newy = bigY_Ikeda(oldx, oldy);
+    point(multyplX*newx + displaceX, multyplY*newy + displaceY) ;
+    oldx  = newx;   
+    oldy  = newy;  
+  }
+  pop();
+  
+  text_parameterD.html('d = ' + parameterD);
+}
+
+
 function displayAttr_withRandom () {
   
   parameterA = random(-5, 5);
@@ -395,6 +435,7 @@ function displayAttr_withRandom () {
   text_parameterD.html('d = ' + parameterD);
 }
 
+
 function displayAttr_switch(){
   if (radio.value() == ' Clifford attractor, recommended scale size/7'){
     displayAttrClifford()
@@ -402,6 +443,8 @@ function displayAttr_switch(){
     displayAttrGumowski_Mira();
   }else if (radio.value() == ' Clifford attractor u/clockywork modification'){
     displayClockywork();
+  }else if (radio.value() == ' Ikeda Map '){
+    displayIkedaMap();
   }else {
     displayAttrJong();
   }
