@@ -12,7 +12,7 @@ X<sub>n+1</sub> = sin(a * Y<sub>n</sub>) + c * cos(a * X<sub>n</sub>)
 
 Y<sub>n+1</sub> = sin(c * X<sub>n</sub>) + d * cos(b * Y<sub>n</sub>)
 
-u/clockywork attractor
+u/clockywork modification of Clifford Attractor
 
 x[n] = (sin(a * y[n-1]))^2 + c * (cos(a * x[n-1]))^2
 
